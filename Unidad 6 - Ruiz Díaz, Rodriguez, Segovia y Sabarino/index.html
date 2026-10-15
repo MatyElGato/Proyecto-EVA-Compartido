@@ -1,10 +1,88 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Mi pagina</title>
-  </head>
-  <body>
-    <h1>De: Ruiz Díaz, Rodriguez y Segovia</h1>
-    <script src="funciones.js"></script>
-  </body>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adiviná el Animal - Sabarino, Ruiz Díaz, Rodriguez y Segovia</title>
+
+  <link rel="icon" type="image/svg" href="img/favicon.svg">
+
+  <link rel="preload" as="image" href="img/background.jpg">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="contenedor-principal">
+    
+    <header class="cabecera" id="cabecera" aria-live="polite" aria-atomic="true">
+      <h1>Adiviná el Animal !🐶</h1>
+      <p>Escuchá el sonido y elegí el animal correcto. ¿Cuántos podesa adivinar?</p>
+    </header>
+
+    <div class="marcadores">
+      <div class="marcador" aria-live="polite" aria-atomic="true">
+        <span aria-hidden="true">🏆</span>
+        <span class="span-marcador">Aciertos: <strong id="score-display">0</strong></span>
+      </div>
+      <div class="marcador" aria-live="polite" aria-atomic="true">
+        <span aria-hidden="true">★</span>
+        <span class="span-marcador">Récord: <strong id="best-display">0</strong></span>
+      </div>
+    </div>
+
+    <section class="tarjeta-juego">
+      <div class="instruccion">
+        ▶ Escuchá y Elegí la opcion correcta
+      </div>
+
+      <div class="reproductor">
+        <button id="btn-toggle-play" class="btn-play" aria-label="Reproducir sonido del animal">
+          <svg id="icon-play" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          <svg id="icon-pause" aria-hidden="true" class="oculto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></svg>
+        </button>
+
+        <div aria-hidden="true" class="barra-progreso-contenedor">
+          <div class="barra-fondo">
+            <div id="progress-bar-fill" class="barra-relleno"></div>
+            <div id="progress-bar-knob" class="barra-punto"></div>
+          </div>
+        </div>
+
+        <div class="tiempo">
+          <span id="elapsed-time" aria-hidden="true">0.0</span>s <small>/ 2.5s</small>
+        </div>
+      </div>
+
+      <div id="options-container" class="grilla-opciones">
+        </div>
+
+      <div id="result-message" class="mensaje-resultado" aria-live="polite" aria-atomic="true"></div>
+
+      <button id="btn-nuevo-animal" class="btn-principal">
+        Nuevo animal
+      </button>
+    </section>
+
+    <div id="game-over-modal" class="modal oculto" role="dialog" aria-modal="true" aria-labelledby="titulo-perdiste" aria-describedby="mensaje-perdida">
+      <div class="modal-contenido">
+        <h2 id="titulo-perdiste" class="titulo-perdiste" tabindex="-1">PERDISTE</h2>
+        <div id="mensaje-perdida">
+          <p>El animal era <strong id="correct-animal-display"></strong>.</p>
+          <p>Llegaste a <strong id="lost-streak-display">0</strong> <span id="aciertos-texto">aciertos</span> seguidos.</p>
+        </div>
+        <button id="btn-restart" class="btn-principal mt-20">
+          Volver a jugar
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/static.js"></script>
+  <script src="js/script.js"></script>
+</body>
 </html>
